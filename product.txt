@@ -1,0 +1,10 @@
+omlette
+4
+eggs | 2 | sht
+carrot | 1 | sht
+cheese | 20 | gr
+salt | 1 | spoon
+fish
+2
+tunec | 1 | sht
+pepper | 3 | gr
