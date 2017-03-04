@@ -1,24 +1,21 @@
 def create_cook_book(name_of_file):  
+    length = sum(1 for string in open(name_of_file, 'r'))
     with open(name_of_file) as products:
-        menu = products.readlines()
-        kolichestvo = 0
+        number = 0
         dishes = []
         cook_book = {}
-        
-        while kolichestvo < len(menu):  
-            menu[kolichestvo] = menu[kolichestvo].strip()
-            dish = menu[kolichestvo]
+        while number < length:  
+            dish = products.readline().strip()
             dishes.append(dish)
-            kolichestvo += 1
-            ingridients = int(menu[kolichestvo])
-            kolichestvo += 1
+            number += 1
+            ingridients = int(products.readline().strip())
+            number += 1
             cook_book[dish] = []
             
             for ingridient in range(ingridients):
-                s = menu[kolichestvo]
-                product_name,product_kol,product_measure = menu[kolichestvo].split(' | ')
+                product_name, product_kol, product_measure = (products.readline().strip()).split(' | ')
                 product_kol = int(product_kol)
-                kolichestvo += 1
+                number += 1
                 cook_book[dish].append({'ingridient_name' : product_name, 'ingridient_count' : product_kol, 'ingridient_measure' : product_measure})
         return dishes, cook_book
             
@@ -42,7 +39,7 @@ def get_shop_list_by_dishes(cook_book, dishes, person_count):
 person_count = int(input('Введите количество человек: '))
 dishes, cook_book = create_cook_book('product.txt')
 print('Введите заказ в одной строке через пробел')
-dishes_that_persons_want = list(input().split())
+dishes_that_persons_want = input().split()
 get_shop_list_by_dishes(cook_book, dishes_that_persons_want, person_count)
 
 
